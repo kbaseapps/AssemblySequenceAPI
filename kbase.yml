@@ -13,3 +13,5 @@ module-version:
 owners:
     [rsutormin]
 
+service-config:
+    dynamic-service: true
