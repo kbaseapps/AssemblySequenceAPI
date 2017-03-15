@@ -20,9 +20,9 @@ import us.kbase.common.service.RpcContext;
  */
 public class AssemblySequenceAPIServer extends JsonServerServlet {
     private static final long serialVersionUID = 1L;
-    private static final String version = "0.0.1";
-    private static final String gitUrl = "";
-    private static final String gitCommitHash = "";
+    private static final String version = "0.0.2";
+    private static final String gitUrl = "https://github.com/kbaseapps/AssemblySequenceAPI";
+    private static final String gitCommitHash = "33a0de616dfdb0e23c47c93735a1b163e563e971";
 
     //BEGIN_CLASS_HEADER
     public AssemblySequenceAPIImpl impl = null;
