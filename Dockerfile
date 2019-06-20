@@ -13,8 +13,29 @@ COPY ./ /kb/module
 RUN mkdir -p /kb/module/work
 RUN chmod -R 777 /kb/module
 
+RUN add-apt-repository ppa:openjdk-r/ppa \
+	&& sudo apt-get update \
+	&& sudo apt-get -y install openjdk-8-jdk \
+	&& echo java versions: \
+	&& java -version \
+	&& javac -version \
+	&& echo $JAVA_HOME \
+	&& ls -l /usr/lib/jvm \
+	&& cd /kb/runtime \
+	&& rm java \
+	&& ln -s /usr/lib/jvm/java-8-openjdk-amd64 java \
+	&& ls -l
+
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+
 WORKDIR /kb/module
-RUN keytool -import -keystore /usr/lib/jvm/java-7-oracle/jre/lib/security/cacerts -storepass changeit -noprompt -trustcacerts -alias letsencryptauthorityx3 -file ./ssl/lets-encrypt-x3-cross-signed.der
+
+# get most up to date jars, note will be cached so change this RUN to update
+RUN cd /kb/dev_container/modules/jars \
+    && git pull \
+    && . /kb/dev_container/user-env.sh \
+    && make deploy \
+    && echo "this is only here to force an update: 1"
 
 RUN make all
 
