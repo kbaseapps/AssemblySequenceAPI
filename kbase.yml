@@ -8,10 +8,10 @@ service-language:
     java
 
 module-version:
-    0.0.3
+    0.0.4
 
 owners:
-    [rsutormin, gaprice]
+    [rsutormin, gaprice, zimingy]
 
 service-config:
     dynamic-service: true
